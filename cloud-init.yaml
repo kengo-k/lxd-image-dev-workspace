@@ -1,7 +1,15 @@
 #cloud-config
 
 write_files:
-  - path: /root/myscript.sh
+
+  - path: /root/init_zsh.sh
+    content: |
+      #!/bin/sh
+      apt-get update
+      apt-get install -y zsh
+    permissions: "0755"
+
+  - path: /root/init_docker.sh
     content: |
       #!/bin/sh
       apt-get update
@@ -18,4 +26,5 @@ write_files:
 
 runcmd:
  - |-
-   /root/myscript.sh
+   /root/init_zsh.sh
+   /root/init_docker.sh
