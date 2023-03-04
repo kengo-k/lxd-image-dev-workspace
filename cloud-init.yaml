@@ -11,4 +11,5 @@ users:
     shell: /bin/bash
 
 runcmd:
+  - chown -R workspace-user:workspace-user /home/workspace-user
   - chsh -s /bin/zsh workspace-user
