@@ -1,4 +1,5 @@
 launch:
+	lxc network set lxdbr0 ipv4.address 192.168.123.1/24
 	lxc launch ubuntu:22.04 workspace \
 		-c security.nesting=true \
 		-c security.privileged=true \
