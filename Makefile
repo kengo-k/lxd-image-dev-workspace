@@ -4,6 +4,7 @@ launch:
 		-c security.nesting=true \
 		-c security.privileged=true \
 		-c user.user-data="$$(cat cloud-init.yaml)"
+	lxc config device override workspace eth0 ipv4.address=192.168.123.2
 	lxc config device add workspace ssh disk source=$$HOME/.ssh path=/home/workspace-user/.ssh
 	lxc config device add workspace zshrc disk source=$$PWD/.zshrc path=/home/workspace-user/.zshrc
 
