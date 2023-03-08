@@ -8,8 +8,12 @@ launch:
 	lxc config device add workspace ssh disk source=$$HOME/.ssh path=/home/workspace-user/.ssh
 	lxc config device add workspace zshrc disk source=$$PWD/.zshrc path=/home/workspace-user/.zshrc
 
+init-status:
+	lxc exec workspace -- cloud-init status
+
 install:
 	lxc config device add workspace init disk source=$$PWD/init path=/home/workspace-user/init
+	lxc exec workspace -- init/init.sh
 
 clean:
 	lxc stop workspace
