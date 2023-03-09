@@ -3,6 +3,7 @@
 package_update: true
 packages:
   - zsh
+  - unzip
 
 users:
   - name: workspace-user
