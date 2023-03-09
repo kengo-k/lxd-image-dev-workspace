@@ -5,9 +5,11 @@ packages:
   - zsh
   - unzip
 
+groups:
+  - docker
 users:
   - name: workspace-user
-    groups: sudo
+    groups: sudo, docker
     sudo: ALL=(ALL) NOPASSWD:ALL
     shell: /bin/bash
 
