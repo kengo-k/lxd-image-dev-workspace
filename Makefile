@@ -1,3 +1,4 @@
+# コンテナを起動する
 launch:
 	lxc network set lxdbr0 ipv4.address 192.168.123.1/24
 	lxc launch ubuntu:22.04 workspace \
@@ -6,18 +7,25 @@ launch:
 		-c user.user-data="$$(cat cloud-init.yaml)"
 	lxc config device override workspace eth0 ipv4.address=192.168.123.2
 	lxc config device add workspace ssh disk source=$$HOME/.ssh path=/home/workspace-user/.ssh
-	lxc config device add workspace zshrc disk source=$$PWD/.zshrc path=/home/workspace-user/.zshrc
+	lxc config device add workspace init disk source=$$PWD/init path=/tmp/init
+	lxc file push .zshrc workspace/home/workspace-user/.zshrc
 
-init-status:
+# 各種必要なツール等をインストール
+install:
+	lxc exec workspace -- sudo -u workspace-user /tmp/init/init.sh
+	lxc exec workspace -- sudo -u workspace-user /tmp/init/install_asdf.sh
+	lxc exec workspace -- /tmp/init/install_docker.sh
+
+
+# cloud-initの初期化処理のステータスをチェックする
+status:
 	lxc exec workspace -- cloud-init status
 
-install:
-	lxc config device add workspace init disk source=$$PWD/init path=/home/workspace-user/init
-	lxc exec workspace -- init/init.sh
-
+# コンテナを停止してから削除
 clean:
 	lxc stop workspace
 	lxc delete workspace
 
+# コンテナに接続する
 sh:
-	lxc exec workspace su - workspace-user
+	lxc exec workspace -- su - workspace-user
