@@ -1,6 +1,7 @@
 {
   "recommendations": [
-    "sketchbuch.vsc-workspace-sidebar"
+    "sketchbuch.vsc-workspace-sidebar",
+    "esbenp.prettier-vscode"
   ],
   "unwantedRecommendations": []
 }
