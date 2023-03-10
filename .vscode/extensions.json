@@ -1,7 +1,8 @@
 {
   "recommendations": [
     "sketchbuch.vsc-workspace-sidebar",
-    "esbenp.prettier-vscode"
+    "esbenp.prettier-vscode",
+    "emeraldwalk.RunOnSave"
   ],
   "unwantedRecommendations": []
 }
