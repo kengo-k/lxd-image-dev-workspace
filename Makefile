@@ -11,6 +11,9 @@ launch:
 	lxc file push .zshrc workspace/home/workspace-user/.zshrc
 	lxc file push init/* workspace/tmp/
 
+install:
+	lxc exec workspace -- su - workspace-user -c "/tmp/install.sh"
+
 # コンテナを停止してから削除
 clean:
 	lxc stop workspace
