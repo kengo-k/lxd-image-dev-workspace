@@ -7,9 +7,9 @@ launch:
 		-c user.user-data="$$(cat cloud-init.yaml)"
 	lxc config device override workspace eth0 ipv4.address=192.168.123.2
 	./check_status.sh
-	lxc file push .zshrc workspace/home/workspace-user/.zshrc
-	lxc file push -r init workspace/tmp
 	lxc config device add workspace ssh disk source=$$HOME/.ssh path=/home/workspace-user/.ssh
+	lxc file push .zshrc workspace/home/workspace-user/.zshrc
+	lxc file push init/* workspace/tmp/
 
 # コンテナを停止してから削除
 clean:
