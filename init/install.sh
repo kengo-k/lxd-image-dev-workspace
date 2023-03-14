@@ -12,4 +12,6 @@ fi
 mv ~/.zshrc.org ~/.zshrc
 
 ./install_asdf.sh
+source ~/.asdf/asdf.sh
+
 sudo ./install_docker.sh
