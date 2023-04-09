@@ -22,3 +22,7 @@ clean:
 # コンテナに接続する
 sh:
 	lxc exec workspace -- su - workspace-user
+
+# コンテナの一覧を表示する
+list:
+	lxc list
